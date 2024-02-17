@@ -23,7 +23,10 @@ class Coupon
 
     #[ORM\Column(type: Types::STRING, enumType:CouponType::class)]
     private CouponType $type = CouponType::FIXED;
-    
+
+    #[ORM\Column]
+    private ?float $amount = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -50,6 +53,17 @@ class Coupon
     {
         $this->type = $type;
 
+        return $this;
+    }
+
+    public function getAmount(): ?float
+    {
+        return $this->amount;
+    }
+
+    public function setAmount(?float $amount): self
+    {
+        $this->amount = $amount;
         return $this;
     }
 }
