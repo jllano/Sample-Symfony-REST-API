@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use App\Enum\CouponType;
 use App\Repository\CouponRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+
 
 #[ORM\Entity(repositoryClass: CouponRepository::class)]
 #[ApiResource]
@@ -18,6 +21,9 @@ class Coupon
     #[ORM\Column(length: 255)]
     private ?string $code = null;
 
+    #[ORM\Column(type: Types::STRING, enumType:CouponType::class)]
+    private CouponType $type = CouponType::FIXED;
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -31,6 +37,18 @@ class Coupon
     public function setCode(string $code): static
     {
         $this->code = $code;
+
+        return $this;
+    }
+
+    public function getType(): CouponType
+    {
+        return $this->type;
+    }
+
+    public function setType(CouponType $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }
