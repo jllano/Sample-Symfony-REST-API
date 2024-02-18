@@ -25,19 +25,19 @@ class AppFixtures extends Fixture
     {
         $product1 = new Product();
         $product1->setName('iPhone');
-        $product1->setPrice(mt_rand(10, 100));
+        $product1->setPrice(80.50);
         $manager->persist($product1);
         $this->addReference('iPhone', $product1);
 
         $product2 = new Product();
         $product2->setName('Headphones');
-        $product2->setPrice(mt_rand(10, 100));
+        $product2->setPrice(50.23);
         $manager->persist($product2);
         $this->addReference('headPhones', $product2);
 
         $product3 = new Product();
         $product3->setName('Case');
-        $product3->setPrice(mt_rand(10, 100));
+        $product3->setPrice(23.00);
         $manager->persist($product3);
         $this->addReference('case', $product3);
     }
