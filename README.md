@@ -24,6 +24,8 @@ php bin/console doctrine:fixtures:load
 
 URL: https://localhost
 
+<img src="swg.png"/>
+
 ### Unit Tests:
 Make sure you are inside of your docker php container
 ```
