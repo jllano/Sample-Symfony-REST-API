@@ -2,7 +2,9 @@
 
 namespace App\Service;
 
-class UnsupportedPaymentMethodException extends \Exception
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+
+class UnsupportedPaymentMethodException extends BadRequestException
 {
     protected $message = 'Unsupported payment method';
 }

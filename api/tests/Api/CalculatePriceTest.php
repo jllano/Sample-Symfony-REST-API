@@ -172,6 +172,46 @@ class CalculatePriceTest extends WebTestCase
 
         $payload = [
             'product' => $caseProduct->getId(),
+            'taxNumber' => self::TAX_NUMBER_ITALY,
+            'couponCode' => $fixedCoupon->getCode(),
+            'paymentProcessor' => 'invalid-payment-processor'
+        ];
+
+        $client->request(
+            'POST',
+            '/purchase',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($payload)
+        );
+
+        $response = $client->getResponse();
+        // 400 - Invalid Payment Processor
+        $this->assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
+
+        $payload = [
+            'product' => $caseProduct->getId(),
+            'taxNumber' => self::TAX_NUMBER_GREECE,
+            'couponCode' => $fixedCoupon->getCode(),
+            'paymentProcessor' => 'braintree'
+        ];
+
+        $client->request(
+            'POST',
+            '/purchase',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($payload)
+        );
+
+        $response = $client->getResponse();
+        // 400 - Invalid Payment Processor / Not supported yet
+        $this->assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
+
+        $payload = [
+            'product' => $caseProduct->getId(),
             'taxNumber' => self::TAX_NUMBER_GREECE,
             'couponCode' => $fixedCoupon->getCode(),
             'paymentProcessor' => 'stripe'
