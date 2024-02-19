@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class CalculatePriceTest extends WebTestCase
+class OrderTest extends WebTestCase
 {
     Const TAX_NUMBER_GERMANY = "DE237805674";
     Const TAX_NUMBER_ITALY = "IT50823556571";
